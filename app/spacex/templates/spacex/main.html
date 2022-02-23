@@ -1,0 +1,38 @@
+{% extends 'spacex/base.html' %}
+
+
+{% block title%} SellIt {% endblock %}
+
+{% block main %}
+    
+    <div class="container  text-center">
+        <br><br>
+        <div class="">
+            <form action="{% url 'main' %}" method="get">
+                <input type="text" name="q" required class="search-bar" placeholder="Search what you want...">
+                <input type="submit" class="search-button" value="Search">
+            </form>
+
+        </div>
+        <br><br>
+    </div>
+
+
+<div class="container text-center">
+    <hr>
+    <p class="display-3">Categories</p>
+    <div class="row ">
+        {% for c in cat %}
+            <div class="col-2 ">
+                <a class="text-dark text-center" href=" {% url 'category' c.slug %} ">
+                    <img class="category-image" src="{{ c.image }}" alt="category-image">
+                    <p class="text-center">{{ c.name }}</p>
+                </a>
+
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

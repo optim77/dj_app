@@ -1,0 +1,65 @@
+{% extends 'spacex/base.html' %}
+
+{% block title %} SpaceX | Contact {% endblock %}
+
+{% block main %}
+
+    <div class="container">
+    <div class="display-1 text-center p-5">Contact</div>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Blandit aliquam etiam erat velit. In est ante in nibh mauris cursus mattis.
+            Amet tellus cras adipiscing enim eu turpis egestas. Libero id faucibus nisl tincidunt eget.
+            Varius duis at consectetur lorem donec. Tincidunt ornare massa eget egestas purus viverra accumsan in.
+            Id faucibus nisl tincidunt eget nullam non nisi est.
+            Auctor elit sed vulputate mi sit. Lorem mollis aliquam ut porttitor leo a diam.
+            Facilisis mauris sit amet massa vitae. Aliquam ultrices sagittis orci a scelerisque purus semper eget duis.
+            Turpis egestas integer eget aliquet nibh praesent. Faucibus turpis in eu mi.
+            Vitae tortor condimentum lacinia quis vel eros donec ac odio.
+            Nisi porta lorem mollis aliquam ut porttitor leo a diam.
+            Vestibulum lectus mauris ultrices eros in cursus.
+            Tellus orci ac auctor augue mauris augue.
+        </p>
+    </div>
+    <div class="container">
+        <hr>
+    </div>
+    <div class="pb-5" id="contact">
+</div>
+    <div class="pb-5">
+
+        <div class="container text-center alert alert-light">
+            {% if messages %}
+                <div class="alert alert-primary" role="alert">
+                    {% for message in messages %}
+                        <h4>{{ message }}</h4>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <form action="{% url 'contact' %}" method="POST">
+
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="{{ form.username.id_username }}">Username:</label>
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.email.id_email }}">Email:</label>
+                    {{ form.email }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.message.id_message }}">Message:</label>
+                    {{ form.message }}
+                    <br>
+                <input type="submit" value="Send" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

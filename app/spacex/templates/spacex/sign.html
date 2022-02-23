@@ -1,0 +1,35 @@
+{% extends 'spacex/base.html' %}
+{% block title %} {% endblock %}
+{% block main %}
+
+    <div class="container login-tab">
+
+        {% if messages %}
+            <p class="messages">
+                {% for message in messages %}
+                    <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                {% endfor %}
+            </p>
+        {% endif %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="username">Username:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username">
+                </div>
+            </div>
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="password">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                </div>
+            </div>
+            <br>
+            <input type="submit" class="btn btn-primary" value="Login">
+        </form>
+    </div>
+
+{% endblock %}
