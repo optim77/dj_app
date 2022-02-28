@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -21,6 +22,7 @@ class Item(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     image = models.CharField(max_length=1000, null=False)
     price = models.FloatField(max_length=10, null=False, default=0)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, default=None)
 
     class Meta:
         ordering = ['-update', 'created']

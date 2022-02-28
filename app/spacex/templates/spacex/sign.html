@@ -1,7 +1,6 @@
 {% extends 'spacex/base.html' %}
-{% block title %} {% endblock %}
+{% block title %} SellIt | Login {% endblock %}
 {% block main %}
-
     <div class="container login-tab">
 
         {% if messages %}
@@ -30,6 +29,11 @@
             <br>
             <input type="submit" class="btn btn-primary" value="Login">
         </form>
+        <br>
+        <p>Don't have an account yet?</p>
+        <a href="{% url 'sign_page' %}">Sign Up</a>
     </div>
+
+
 
 {% endblock %}

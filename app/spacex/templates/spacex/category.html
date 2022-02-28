@@ -6,10 +6,10 @@
     <p class="amount-items-category">{{ amount }} products in this category</p>
     {% for item in items %}
         <div class="col-3 item-category-tab text-center ">
-            <a class="text-dark" href="">
+            <a class="text-dark" href="{% url 'item' item.id %}">
                 <img class="item-category-image" src="{{ item.image }}" alt="item-image">
                 <p>{{ item.name }}</p>
-                <p>{{ item.price }}</p>
+                <p class="price-category">{{ item.price }} $</p>
             </a>
         </div>
     {% endfor %}

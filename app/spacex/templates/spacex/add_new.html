@@ -1,6 +1,12 @@
 {% extends 'spacex/base.html' %}
-{% block title %} SellIt| Add New {% endblock %}
+{% block title %} SellIt | Add New {% endblock %}
 {% block main %}
-
-    
+    <div class="container add-form">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <input type="submit" class="btn btn-success btn-add-new" value="Add">
+        </form>
+    </div>
 {% endblock %}
