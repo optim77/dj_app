@@ -14,5 +14,6 @@ urlpatterns = [
     path('logout', views.logout_user, name='logout'),
     path('add_new/', views.add_new, name='add_new'),
     path('edit/<str:id>/', views.update_item, name='update_item'),
-    path('delete/<int:id>.', views.delete_item, name='delete_item')
+    path('delete/<int:id>.', views.delete_item, name='delete_item'),
+    path('add_to_basket/<int:id>', views.add_to_basket, name='add_to_basket')
 ]
