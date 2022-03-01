@@ -13,7 +13,7 @@
 
 </head>
 <body>
-
+<div id="app">
 <nav class="navbar navbar-light navbar-expand-lg bg-dark">
     <a class="text-white  nav-logo head-title" href="{% url 'main' %}">SellIt</a>
     <a class="text-white nav-cat btn" href="">Categories</a>
@@ -41,6 +41,7 @@
 
 
 {% block main %} {% endblock %}
+</div>
 <script src="{% static 'scripts.js' %}"></script>
 
 
