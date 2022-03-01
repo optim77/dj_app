@@ -65,7 +65,7 @@ PyOpenGL==3.1.5
 pyOpenSSL==21.0.0
 pypiwin32==223
 pyttsx3==2.90
-pypiwin32==303
+
 pywin32-ctypes==0.2.0
 PyYAML==5.4.1
 regex==2022.1.18
