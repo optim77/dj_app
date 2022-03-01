@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import *
@@ -142,6 +143,29 @@ def item(request, id):
         'amount': count
     }
     return render(request, 'spacex/item.html', context)
+
+
+
+@csrf_exempt
+@login_required(login_url='/login')
+def add_to_basket(request,id):
+    user = request.user
+    add = Basket.objects.filter(user=user.id)
+    if add:
+        pc = Basket.objects.get(user=user.id)
+        it = Item.objects.get(id=id)
+        pc.items.add(it)
+        pc.save()
+        return HttpResponse('Added to basket')
+    else:
+        pc = Basket(
+            user = user
+        )
+        pc.save()
+        it = Item.objects.get(id=id)
+        pc.items.add(it)
+        pc.save()
+        return HttpResponse('Added to basket')
 
 
 @login_required(login_url='/login')
