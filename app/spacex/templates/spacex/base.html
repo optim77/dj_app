@@ -27,6 +27,12 @@
         <a class="text-white nav-cat btn " href="{% url 'login_page' %}">Login</a>
         <a class="text-white nav-cat btn " href="{% url 'sign_page' %}">Sign Up</a>
     {% endif %}
+    
+    {% if user.is_superuser %}
+        <!-- Admin panel -->
+        <a class="text-white nav-cat btn btn-danger" href="">Add Category</a>
+
+    {% endif %}
 
 
 
