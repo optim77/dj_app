@@ -40,6 +40,12 @@ a{
     font-weight: 500;
     color: green;
 }
+.explore-image{
+    width: 100%;
+}
+.explore-item{
+    border: 1px solid black;
+}
 .item-image{
     width: 100%;
 }
@@ -51,7 +57,7 @@ a{
     letter-spacing: 3px;
 }
 .item-owner{
-
+    padding: 10px;
 }
 .similar-item-image{
     width: 100%;

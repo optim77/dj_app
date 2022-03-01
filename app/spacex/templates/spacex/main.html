@@ -27,21 +27,37 @@
     </div>
 
 
-<div class="container text-center">
-    <hr>
-    <p class="display-3">Categories</p>
-    <div class="row ">
-        {% for c in cat %}
-            <div class="col-2 ">
-                <a class="text-dark text-center" href=" {% url 'category' c.slug %} ">
-                    <img class="category-image" src="{{ c.image }}" alt="category-image">
-                    <p class="text-center">{{ c.name }}</p>
-                </a>
+    <div class="container text-center">
+        <hr>
+        <p class="display-3">Categories</p>
+        <div class="row ">
+            {% for c in cat %}
+                <div class="col-2 ">
+                    <a class="text-dark text-center" href=" {% url 'category' c.slug %} ">
+                        <img class="category-image" src="{{ c.image }}" alt="category-image">
+                        <p class="text-center">{{ c.name }}</p>
+                    </a>
 
-            </div>
-        {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
+
+    <div class="container text-center">
+        <div class="row">
+            <hr>
+            <p class="display-3">Explore</p>
+            {% for r in random %}
+                <div class="col-3 explore-item">
+                    <a class="text-dark" href="{% url 'item' r.id %}">
+                        <img class="explore-image" src="{{ r.image }}" alt="item-image">
+                        <p>{{ r.name }}</p>
+                        <p class="price-category">{{ r.price }} $</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 
 
 {% endblock %}

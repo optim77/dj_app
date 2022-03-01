@@ -18,12 +18,15 @@ class RegistrationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super(RegistrationForm, self).__init__(*args, **kwargs)
         self.fields['email'].widget.attrs.update({'class': 'form-control'})
-        self.fields['avatar'].widget.attrs.update({'class': 'form-control'})
         self.fields['username'].widget.attrs.update({'class': 'form-control'})
         self.fields['password1'].widget.attrs.update({'class': 'form-control'})
         self.fields['password2'].widget.attrs.update({'class': 'form-control'})
 
 
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
 
 
 class SingUp(forms.Form):

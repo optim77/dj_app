@@ -19,7 +19,7 @@ def login_page(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         try:
-            user = User.objects.get(username=username)
+            user = User.objects.get(Q(username=username) | Q(email=username))
         except:
             messages.error(request, 'User does not exist')
 
@@ -69,14 +69,52 @@ def logout_user(request):
     return redirect('main')
 
 
+@login_required(login_url='/login')
+def profile(request):
+    items = Item.objects.filter(owner=request.user)
+    context = {
+        'user': request.user,
+        'items': items
+    }
+    return render(request, 'spacex/profile.html', context)
+
+
+@login_required(login_url='/login')
+def edit_profile(request):
+
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+
+
+    form = UserForm(instance=request.user)
+    context = {
+        'form': form
+    }
+    return render(request, 'spacex/edit_profile.html', context)
+
+
+def vendor(request, id):
+    if request.user.id == id:
+        return redirect('profile')
+    seller = User.objects.get(id=id)
+    items = Item.objects.filter(owner=id)
+    context = {
+        'vendor': seller,
+        'items': items
+    }
+    return render(request, 'spacex/vendor.html', context)
+
+
 def main(request):
-    # q = request.GET.get('q') if request.GET.get('q') != None else ''
-    # searched = Item.objects.filter(Q(name__icontains=q) & Q(description__contains=q))
     categories = Category.objects.all()
+    random = Item.objects.order_by('?')[0:8]
     form = SingUp
     context = {
         'form': form,
-        'cat': categories
+        'cat': categories,
+        'random': random
     }
     return render(request, 'spacex/main.html', context)
 
@@ -95,10 +133,13 @@ def item(request, id):
     item = Item.objects.get(id=id)
     similar = Item.objects.filter(Q(name__icontains=item.name[0:10]))[1:7]
     owner = item.owner
+    vendor_items = Item.objects.filter(owner=item.owner)
+    count = vendor_items.count()
     context = {
         'item': item,
         'similar': similar,
-        'owner': owner
+        'owner': owner,
+        'amount': count
     }
     return render(request, 'spacex/item.html', context)
 
