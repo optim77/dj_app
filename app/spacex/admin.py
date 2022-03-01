@@ -7,3 +7,4 @@ from django.contrib.auth.models import User
 admin.site.register(Category)
 admin.site.register(Item)
 admin.site.register(ContactMessage)
+admin.site.register(Basket)
