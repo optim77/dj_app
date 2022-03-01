@@ -38,3 +38,11 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return str(self.username)
+    
+    
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    items = models.ManyToManyField(Item)
+
+    def __str__(self):
+        return str(self.user)
